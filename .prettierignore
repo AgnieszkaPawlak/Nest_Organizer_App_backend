@@ -1,0 +1,13 @@
+# dependencies
+/node_modules
+
+
+# production
+/build
+
+
+# others
+# /code-stages
+/scripts
+
+/.docker-compose.yaml
