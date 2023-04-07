@@ -3,37 +3,37 @@ import { RegisterUserDto } from './dto/register-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UsersService } from './users.service';
 
-@Controller()
+@Controller('/users')
 export class UsersController {
   constructor(private userService: UsersService) {}
 
-  @Get('/users')
-  async getUsers() {
-    const users = this.userService.findUsers();
+  @Get('/')
+  async findAll() {
+    const users = this.userService.findAll();
     return users;
   }
 
-  @Get('/user/:id')
-  async findUser(@Param('id') id: string) {
-    const user = await this.userService.findUser(id);
+  @Get('/:id')
+  async findOne(@Param('id') id: string) {
+    const user = await this.userService.findOne(id);
     return user;
   }
 
-  @Post('/user')
-  async addUser(@Body() registerUserDto: RegisterUserDto) {
-    const user = await this.userService.addUser(registerUserDto);
+  @Post('/')
+  async add(@Body() registerUserDto: RegisterUserDto) {
+    const user = await this.userService.add(registerUserDto);
     return user.id;
   }
 
-  @Patch('/user/:id')
-  async updateUserById(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    await this.userService.updateUser(id, updateUserDto);
+  @Patch('/:id')
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+    await this.userService.update(id, updateUserDto);
     return id;
   }
 
-  @Delete('/user/:id')
-  async deleteUserById(@Param('id') id: string) {
-    await this.userService.deleteUser(id);
+  @Delete('/:id')
+  async delete(@Param('id') id: string) {
+    await this.userService.delete(id);
     return id;
   }
 }
