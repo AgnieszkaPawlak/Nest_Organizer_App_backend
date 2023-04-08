@@ -19,7 +19,7 @@ export class UsersService {
 
   findOne(id: string) {
     const users = this.userRepository.findOneBy({ id });
-    return { users };
+    return users;
     // return this.userRepository.findOneBy({ id });
   }
 

@@ -39,3 +39,7 @@ To run the application, execute the command:
 ```bash
 npm run start
 ```
+
+## ✔️ Testing
+
+To testing the endpoints of the project, you can use Postman JSON file (OrganizerAppMegak.postman_collection.json). File should be imported to Postman application.
