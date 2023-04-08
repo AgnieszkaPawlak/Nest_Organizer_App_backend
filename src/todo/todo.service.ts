@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
 import { CreateTodoResponse, UpdateTodoResponse } from 'src/interfaces/interfacesResp';
 
 import { Todo } from './../typeorm/entities/Todo';

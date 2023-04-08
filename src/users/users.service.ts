@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { RegisterUserResponse, UpdateUserResponse } from 'src/interfaces/interfacesResp';
 import { Repository } from 'typeorm';
+
+import { RegisterUserResponse, UpdateUserResponse } from 'src/interfaces/interfacesResp';
 import { User } from './../typeorm/entities/User';
 import { Event } from './../typeorm/entities/Event';
 

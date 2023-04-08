@@ -1,30 +1,27 @@
 import { Module } from '@nestjs/common';
 import { APP_FILTER } from '@nestjs/core';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './typeorm/entities/User';
-import { Event } from './typeorm/entities/Event';
-import { Todo } from './typeorm/entities/Todo';
-import { UsersModule } from './users/users.module';
+import { ConfigModule } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 
 import { AllExceptionsFilter } from './filters/global-exception.filter';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { UsersModule } from './users/users.module';
 import { TodoModule } from './todo/todo.module';
 import { EventModule } from './event/event.module';
+import databaseConfig from './config/database.config';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'test',
-      password: 'test',
-      database: 'test',
-      entities: [User, Event, Todo],
-      bigNumberStrings: false,
-      logging: true,
-      synchronize: true,
+    ThrottlerModule.forRoot({
+      ttl: 60,
+      limit: 10,
+    }),
+    ConfigModule.forRoot(),
+    TypeOrmModule.forRootAsync({
+      useFactory: databaseConfig,
     }),
     UsersModule,
     TodoModule,
@@ -36,6 +33,10 @@ import { EventModule } from './event/event.module';
     {
       provide: APP_FILTER,
       useClass: AllExceptionsFilter,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
     },
   ],
 })
