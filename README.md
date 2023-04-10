@@ -42,4 +42,4 @@ npm run start
 
 ## ✔️ Testing
 
-To testing the endpoints of the project, you can use Postman JSON file [Postman collection[(https://github.com/AgnieszkaPawlak/Nest_Organizer_App_backend/blob/main/OrganizerAppMegak.postman_collection.json). File should be imported to Postman application.
+To testing the endpoints of the project, you can use Postman JSON file [Postman collection](https://github.com/AgnieszkaPawlak/Nest_Organizer_App_backend/blob/main/OrganizerAppMegak.postman_collection.json). File should be imported to Postman application.
